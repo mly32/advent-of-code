@@ -1,0 +1,13 @@
+inp w
+mul x 0
+add x w
+mul x -1
+inp w
+mul y 0
+add y w
+mul y -1
+inp w
+mul z 0
+add z w
+add z x
+add z y
