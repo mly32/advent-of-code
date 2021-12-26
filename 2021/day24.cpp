@@ -2,6 +2,13 @@
 using namespace std;
 
 struct solution {
+  struct hasher {
+    std::size_t operator()(const array<int, 5>& k) const {
+      static hash<int> h = hash<int>{};
+      return h(k[0]) ^ h(k[1]) ^ h(k[2]) ^ h(k[3]) ^ h(k[4]);
+    }
+  };
+
   enum op_t : char {
     INP = 'n',
     ADD = 'd',
@@ -19,7 +26,8 @@ struct solution {
   vector<instr_t> instructions;
   bool largest;
   int pc_end;
-  map<reg_t, optional<input_t>> dp;
+  unordered_map<reg_t, optional<input_t>, hasher> dp;
+  static const size_t mx_dp_sz = 1e8;
 
   solution(const string& filename) {
     string line;
@@ -110,6 +118,10 @@ struct solution {
   inline int order(const int i) { return largest ? 9 - i : 1 + i; }
 
   optional<input_t> backtrack(reg_t reg) {
+    if (dp.size() > mx_dp_sz) {
+      printf("cleared %lu\n", dp.size());
+      dp.clear();
+    }
     auto [it, unseen] = dp.try_emplace(reg);
     optional<input_t>& res = it->second;
     if (!unseen) {
@@ -185,7 +197,7 @@ struct solution {
 };
 
 int main() {
-  const bool final = 1, snd_question = 1;
+  const bool final = 1, snd_question = 0;
   const string filename =
       "./input/" + string(final ? "final" : "practice") + "/day24.txt";
   !snd_question ? solution(filename).solve1() : solution(filename).solve2();
