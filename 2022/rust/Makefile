@@ -9,7 +9,7 @@ VERIFY?=false
 
 VER_NAME=$(if $(filter 1,$(VER)),practice,final)
 INPUT?=../input/$(VER_NAME)/day$(DAY).in
-OUTPUT?=../output/part$(PART)/$(VER_NAME)/day$(DAY).out
+OUTPUT?=../output/part$(PART)/$(VER_NAME)/day$(DAY).ans
 
 START?=01
 END?=01
