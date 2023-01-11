@@ -2,17 +2,33 @@
 
 [https://adventofcode.com/2022](https://adventofcode.com/2022)
 
-To compile and run code for day `N`,
+## C++
+
+To compile and run code for day `N`:
 
 ```shell
-# $N is the day
-# version 0 for practice, 1 for final
+# $N is the day (two digits)
 # question 0 for first question, question 1 for second question
-make all DAY="$N" VER="0" Q="0"
+# version 0 for practice, version 1 for final
+make all DAY=$N Q=0 VER=0
 ```
 
-Change the `VER` argument to run on the final input instead of the practice
-input.
+## Rust
 
-Change the `Q` argument to run the second question instead of the first
-question.
+To compile and run code for day `N`:
+
+```shell
+# $N is the day (two digits)
+# part 1 for first question, part 2 for second question
+# version 1 for practice, version 2 for final
+make run DAY=$N PART=1 VER=1
+```
+
+To test a range of days from `A` to `B`:
+
+```shell
+# start day and end day, inclusive range. requires two digit padding
+make verify-all START=$A END=$B
+```
+
+An output list of times is included here: [times.txt](./rust/times.txt).

@@ -1,0 +1,11 @@
+[package]
+name = "aoc_2022"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+itertools = "0.10.5"
+lazy_static = "1.4.0"
+nalgebra = "0.31.4"
+nom = "7.1.2"
+num = "0.4.0"
